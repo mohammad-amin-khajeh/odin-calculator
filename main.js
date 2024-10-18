@@ -1,3 +1,5 @@
+import calculate from "./Equals.js";
+
 const display = document.getElementById("display");
 const numbers = document.getElementsByClassName("number");
 function handleNumbes() {
@@ -27,6 +29,14 @@ function handleOperators() {
   }
 }
 
+const equal = document.getElementById("equal");
+function handleEqual(display) {
+  equal.addEventListener("click", () => {
+    display.innerText = calculate(display.innerText);
+  });
+}
+
 handleNumbes();
 handleFloat();
 handleOperators();
+handleEqual(display);
