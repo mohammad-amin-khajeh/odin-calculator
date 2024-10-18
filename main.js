@@ -1,33 +1,32 @@
-const operations = {
-	add: document.getElementById("add"),
-	subtract: document.getElementById("subtract"),
-	divide: document.getElementById("divide"),
-	multiply: document.getElementById("multiply"),
-	equal: document.getElementById("equal"),
-};
-
-const opers = document.querySelectorAll(".operation");
-
 const display = document.getElementById("display");
 const numbers = document.getElementsByClassName("number");
-
-for (const number of numbers) {
-	number.addEventListener(
-		"click",
-		(e) => (display.innerText += e.target.innerText),
-	);
+function handleNumbes() {
+	for (const number of numbers) {
+		number.addEventListener(
+			"click",
+			(e) => (display.innerText += e.target.innerText),
+		);
+	}
 }
 
 const float = document.getElementById("float");
+function handleFloat() {
+	float.addEventListener("click", () =>
+		!display.innerText.includes(".") ? (display.innerText += ".") : "",
+	);
+}
 
-float.addEventListener("click", () =>
-	!display.innerText.includes(".") ? (display.innerText += ".") : "",
-);
+const operations = document.querySelectorAll(".operation");
+function handleOperators() {
+	operations.forEach((operation) =>
+		operation.addEventListener("click", (e) =>
+			!"+÷×-".includes(display.innerText[display.innerText.length - 1])
+				? (display.innerText += e.target.innerText)
+				: "",
+		),
+	);
+}
 
-opers.forEach((operation) =>
-	operation.addEventListener("click", (e) =>
-		!"+÷×-".includes(display.innerText[display.innerText.length - 1])
-			? (display.innerText += e.target.innerText)
-			: "",
-	),
-);
+handleNumbes();
+handleFloat();
+handleOperators();
